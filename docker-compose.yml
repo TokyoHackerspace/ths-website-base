@@ -1,0 +1,81 @@
+###############################################################################
+# Tokyohackerspace Website docker configuration.
+# This is the primary docker compose file for tokyohackerspace.
+# Ports for development and production are provided in override files.
+# Example usage.
+#
+# usage:
+#    Development: docker-compose -f docker-compose.yml -f ./overrides/development.yml up
+#    Production: docker-compose -f docker-compose.yml -f ./overrides/production.yml up
+#  
+###############################################################################
+
+version: '2'
+services:
+  
+  ths_apache_main:
+    container_name: ths_apache_main
+    build: $THS_GIT_BASE/ths-apache-php
+    image: ths-apache-php
+    volumes:
+      - $THS_GIT_BASE/ths-website/vol/www/main:/var/www
+    restart: always
+
+  ths_apache_akihabara:
+    container_name: ths_apache_akihabara
+    image: ths-apache-php
+    volumes:
+      - $THS_GIT_BASE/ths-website/vol/www/akihabara/html:/var/www/html
+    restart: always
+
+  ths_partkeepr:
+    container_name: ths_partkeepr
+    image: mhubig/partkeepr
+    environment:
+      PARTKEEPR_DATABASE_HOST: ths_database
+      PARTKEEPR_DATABASE_NAME: partkeepr
+      PARTKEEPR_DATABASE_PORT: 3306
+      PARTKEEPR_DATABASE_USER: partkeepr
+      PARTKEEPR_DATABASE_PASS: partkeepr
+      PARTKEEPR_OKTOPART_APIKEY: 0123456
+    depends_on:
+      - ths_database
+
+  ths_dokuwiki:
+    container_name: ths_dokuwiki
+    image: bitnami/dokuwiki:latest
+    volumes:
+      - $THS_GIT_BASE/ths-website/vol/dokuwiki/wiki:/bitnami
+  
+  ths_rproxy:
+    container_name: ths_rproxy
+    build: $THS_GIT_BASE/ths-rproxy
+    image: ths-rproxy
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - ths_apache_main
+      - ths_apache_akihabara
+      - ths_dokuwiki
+      - ths_partkeepr
+    restart: always
+
+  ths_database:
+    container_name: ths_database
+    image: mysql
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_DATABASE: partkeepr
+      MYSQL_USER: partkeepr
+      MYSQL_PASSWORD: partkeepr
+      MYSQL_ROOT_PASSWORD: partkeepr
+    volumes:
+      - $THS_GIT_BASE/ths-website/vol/mysql-dump:/docker-entrypoint-initdb.d
+      - $THS_GIT_BASE/ths-website/vol/mysql:/var/lib/mysql
+      
+  # ths_backup_management:
+  #   container_name: ths_backup_management
+  #   build: ths-backup-management
+  #   image: ths-backup-management

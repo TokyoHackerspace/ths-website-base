@@ -1,0 +1,17 @@
+###############################################################################
+# Tokyohackerspace Website docker configuration.
+# This is the development configuration override file.
+# Do not change anything in this file, if you want to use a different port
+# please make a copy of this file, make your changes there and then add it
+# to the repository for future use.
+#
+# usage:  docker-compose -f docker-compose.yml -f development up
+#
+###############################################################################
+version: '2'
+
+services:
+  ths_rproxy:
+    ports:
+      - 80:8080
+      - 443:8080

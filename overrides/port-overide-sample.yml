@@ -1,0 +1,17 @@
+###############################################################################
+# Tokyohackerspace Website docker configuration.
+# This file is an example file for overriding the reverse proxy server.
+# Nginx runs on port 8080, so in the example below simply change the local
+# port of 8901 to the port you would like to use.  Then save this file as a new
+# file for your local use.
+#
+# usage:  docker-compose -f docker-compose.yml -f <filename> up
+#
+###############################################################################
+
+version: '2'
+
+services:
+  ths_rproxy:
+    ports:
+      - 8901:8080
