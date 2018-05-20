@@ -15,17 +15,24 @@ services:
   
   ths_apache_main:
     container_name: ths_apache_main
-    build: $THS_GIT_BASE/ths-apache-php
+    build: $THS_GIT_BASE/ths-website-apache-php
     image: ths-apache-php
     volumes:
-      - $THS_GIT_BASE/ths-website/vol/www/main:/var/www
+      - $THS_GIT_BASE/ths-website-base/vol/www/main:/var/www
     restart: always
 
   ths_apache_akihabara:
     container_name: ths_apache_akihabara
     image: ths-apache-php
     volumes:
-      - $THS_GIT_BASE/ths-website/vol/www/akihabara/html:/var/www/html
+      - $THS_GIT_BASE/ths-website-base/vol/www/akihabara/html:/var/www/html
+    restart: always
+
+  ths_dokuwiki:
+    container_name: ths_dokuwiki
+    image: bitnami/dokuwiki:latest
+    volumes:
+      - $THS_GIT_BASE/ths-website-base/vol/dokuwiki/wiki:/bitnami
     restart: always
 
   ths_partkeepr:
@@ -40,16 +47,11 @@ services:
       PARTKEEPR_OKTOPART_APIKEY: 0123456
     depends_on:
       - ths_database
-
-  ths_dokuwiki:
-    container_name: ths_dokuwiki
-    image: bitnami/dokuwiki:latest
-    volumes:
-      - $THS_GIT_BASE/ths-website/vol/dokuwiki/wiki:/bitnami
+    restart: always
   
   ths_rproxy:
     container_name: ths_rproxy
-    build: $THS_GIT_BASE/ths-rproxy
+    build: $THS_GIT_BASE/ths-website-rproxy
     image: ths-rproxy
     ports:
       - 80:80
@@ -72,8 +74,9 @@ services:
       MYSQL_PASSWORD: partkeepr
       MYSQL_ROOT_PASSWORD: partkeepr
     volumes:
-      - $THS_GIT_BASE/ths-website/vol/mysql-dump:/docker-entrypoint-initdb.d
-      - $THS_GIT_BASE/ths-website/vol/mysql:/var/lib/mysql
+      - $THS_GIT_BASE/ths-website-base/vol/mysql-dump:/docker-entrypoint-initdb.d
+      - $THS_GIT_BASE/ths-website-base/vol/mysql:/var/lib/mysql
+    restart: always
       
   # ths_backup_management:
   #   container_name: ths_backup_management
