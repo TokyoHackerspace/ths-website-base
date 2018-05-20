@@ -5,7 +5,7 @@
 
 ### Docker
 
-If you don't already have docker installed locally the please [**follow the instructions on docker's website**](https://docs.docker.com/install/).  Please make sure you are using docker community edition greater than 18.
+If you don't already have docker installed locally the please [**follow the instructions on docker's website**](https://docs.docker.com/install/).  Please make sure you are using docker community edition greater than 18.03.1-ce.
 
 **Important Note**:  If you are running another webserver on port 80 and/or 443 please take the time to shut them down as they will conflict with the docker containers.
 
