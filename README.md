@@ -16,7 +16,7 @@ Clone this repository locally.
 
 `git clone git@github.com:TokyoHackerspace/ths-website-base.git`
 
-Once cloned you need to set $THS_GIT_BASE to point the parent directory of where you cloned "ths-website-base".  For example is you have your git repository here `/home/username/tokyohackerspace/ths-website-base` then $THS_GIT_BASE should point to `/home/username/tokyohackerspace`.  
+Once cloned you need to set $THS_GIT_BASE to point the parent directory of where you cloned "ths-website-base".  For example is you have your git repository here `/home/username/tokyohackerspace/ths-website-base` then `$THS_GIT_BASE` should point to `/home/username/tokyohackerspace`.  
 
 The example I am going to provide is for the bash shell.  If you are using a shell other than bash you should set the environment variable the way your shell requires.  Since bash is the most commonly used I will provide it here.
 
@@ -35,11 +35,14 @@ Now that the base environment is set you can use the make file to finish the bui
 
 `Dokuwiki` and `partkeepr` have their docker container images which are built during the build process.
 
-### Development Instanciation
+### Make Commands
 
-Now that everything is built, it is now time to 
+There are shortcuts to the commands used built in the Makefile.  Make sure to run these from inside the ths-website-base repository directory.
 
-
+`make debug` will starts the development version of the website.
+`make production` will start the production version of the website in detached mode.
+`make stop` will stop all docker containers that are in detached mode.
+`make clean` currently will removed the `vol/www/main`, `vol/www/akihabara`, `vol/www/mysql` and `vol/www/mysql-dump` directories.  The goal is eventually it'll clean the system.
 
 
 
