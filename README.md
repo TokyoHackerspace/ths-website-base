@@ -21,6 +21,11 @@ export $THS_GIT_BASE="/home/username/tokyohackerspace"
 Once this is set you need to re-source the file so that it exists in memory, you can either close your terminal window and re-open it or you can execute the command `source <filename>` where `<filename>` the file you added the line to.
 
 
+Now that the base environment is set you can use the make file to finish the build process.  Enter into the base repository in the terminal window and type `make build`.  The system will now clone the rest of the repositories needed to run the development environment.
+
+`ths-website-rproxy` contains the nginx reverse proxy configuration
+`ths-website-apache-php` contains the apache server used to host the main site and dokuwiki.
+
 
 
 

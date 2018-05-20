@@ -4,6 +4,16 @@ build:
 
 	@docker-compose down
 
+  # Make sure we have the website proxy repository.
+	@if [ ! -d "../ths-website-rproxy" ]; then  \
+		git clone git@github.com:TokyoHackerspace/ths-website-rproxy.git ../ths-website-rproxy; \
+	fi
+
+  # Make sure we have the apache php repository.
+	@if [ ! -d "../ths-website-apache-php" ]; then  \
+		git clone git@github.com:TokyoHackerspace/ths-website-apache-php.git ../ths-website-apache-php; \
+	fi
+
   # Check if the main website code exists otherwise pull it locally.
 	@if [ ! -d "vol/www/main" ]; then  \
 		git clone git@github.com:TokyoHackerspace/ths-website.git vol/www/main; \
@@ -12,12 +22,12 @@ build:
 		echo 'closed' > vol/www/main/app/events/cache/status.txt; \
 	fi
 
-	  # Check if the akihabara tour website code exists otherwise pull it locally.
+  # Check if the akihabara tour website code exists otherwise pull it locally.
 	@if [ ! -d "vol/www/akihabara/html" ]; then  \
 		git clone git@github.com:TokyoHackerspace/ths-akihabara-tour.git vol/www/akihabara/html; \
 	fi
 
-	  # Build everything in the docker-compose.yml file.
+  # Build everything in the docker-compose.yml file.
 	@docker-compose build
 
 
