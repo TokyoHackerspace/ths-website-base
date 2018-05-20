@@ -1,6 +1,6 @@
 # Tokyo Hackerspace Website.
 
-## Development Usage
+### Development Usage
 
 Note:  These instructions are for UNIX and MacOS development. If you are on windows, please run a linux virtual machine.
 
@@ -23,10 +23,14 @@ Once this is set you need to re-source the file so that it exists in memory, you
 
 Now that the base environment is set you can use the make file to finish the build process.  Enter into the base repository in the terminal window and type `make build`.  The system will now clone the rest of the repositories needed to run the development environment.
 
-`ths-website-rproxy` contains the nginx reverse proxy configuration
-`ths-website-apache-php` contains the apache server used to host the main site and dokuwiki.
+* `ths-website-rproxy` contains the nginx reverse proxy configuration
+* `ths-website-apache-php` contains the apache server used to host the main site and akihabara tour subsite.
 
+`Dokuwiki` and `partkeepr` have their docker containers.  They will be built in the next stage.
 
+### Docker
+
+If you don't already have docker installed locally the please [**follow the instructions on docker's website**](https://docs.docker.com/install/).
 
 
 
