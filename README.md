@@ -39,10 +39,10 @@ Now that the base environment is set you can use the make file to finish the bui
 
 There are shortcuts to the commands used built in the Makefile.  Make sure to run these from inside the ths-website-base repository directory.
 
-`make debug` will starts the development version of the website.
-`make production` will start the production version of the website in detached mode.
-`make stop` will stop all docker containers that are in detached mode.
-`make clean` currently will removed the `vol/www/main`, `vol/www/akihabara`, `vol/www/mysql` and `vol/www/mysql-dump` directories.  The goal is eventually it'll clean the system.
+* `make debug` will starts the development version of the website.
+* `make production` will start the production version of the website in detached mode.
+* `make stop` will stop all docker containers that are in detached mode.
+* `make clean` currently will removed the `vol/www/main`, `vol/www/akihabara`, `vol/www/mysql` and `vol/www/mysql-dump` directories.  The goal is eventually it'll clean the system.
 
 
 
