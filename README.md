@@ -1,5 +1,8 @@
 # Tokyo Hackerspace Website.
 
+
+**Note**:  These instructions are for UNIX and MacOS development. If you are on windows, please run a linux virtual machine.
+
 ### Docker
 
 If you don't already have docker installed locally the please [**follow the instructions on docker's website**](https://docs.docker.com/install/).  Please make sure you are using docker community edition greater than 18.
@@ -8,8 +11,6 @@ If you don't already have docker installed locally the please [**follow the inst
 
 
 ### Development Build
-
-Note:  These instructions are for UNIX and MacOS development. If you are on windows, please run a linux virtual machine.
 
 Clone this repository locally.
 
