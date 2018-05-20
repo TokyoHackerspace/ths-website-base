@@ -45,7 +45,6 @@ debug:
 	@docker-compose down
 	@docker-compose -f docker-compose.yml -f ./overrides/development.yml up
 
-
 # Run does not throw the docker logs to the console
 production:
 
@@ -54,7 +53,7 @@ production:
 		rm vol/www/main/html/.htaccess; \
 	fi
 
-	@echo "Linking development htaccess file";
+  @echo "Linking production htaccess file";
 	@(cd vol/www/main/html; ln -s ../app/security/htaccess-prod .htaccess)
 
 	@docker-compose down
@@ -66,9 +65,12 @@ stop:
 
 	@docker-compose down
 
-
 # Clean brings down the docker containers and deletes other sub repositories
 clean:
-	@docker-compose down
-	@rm -rf vol/www/main
-	@rm -rf vol/www/akihabara
+  @docker-compose down
+  @echo "Removing the main website repository"
+  @rm -rf vol/www/main
+  @echo "Removing the akihabaratour website repository"
+  @rm -rf vol/www/akihabara
+  @echo "Removing the mysql temp directory"
+  @rm -rf vol/mysql

@@ -20,7 +20,7 @@ Once cloned you need to set $THS_GIT_BASE to point the parent directory of where
 
 The example I am going to provide is for the bash shell.  If you are using a shell other than bash you should set the environment variable the way your shell requires.  Since bash is the most commonly used I will provide it here.
 
-In your user directory you should have one of these 3 files. `.profile`, `.bash_profile`, '.bashrc`.  Edit the file you have and then add the following line to it.
+In your user directory you should have one of these 3 files. `.profile`, `.bash_profile`, `.bashrc`.  Edit the file you have and then add the following line to it.
 
 ```
 export $THS_GIT_BASE="/home/username/tokyohackerspace"

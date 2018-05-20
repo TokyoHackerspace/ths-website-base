@@ -13,4 +13,5 @@ version: '2'
 services:
   ths_rproxy:
     ports:
-      - 8900:8080
+      - 80:8080
+      - 443:8080
